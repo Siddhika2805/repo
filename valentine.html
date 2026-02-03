@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Be My Valentine, Aaduuuu? 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:'Quicksand',sans-serif;
+    background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+.card{
+    background:rgba(255,255,255,0.95);
+    padding:45px 40px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+    max-width:430px;
+    position:relative;
+    animation:float 3s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+h1{
+    font-family:'Playfair Display',serif;
+    color:#ff5f7e;
+    font-size:34px;
+    margin-bottom:10px;
+}
+h2{color:#ff4b6e;margin-top:15px;}
+p{color:#555;font-size:16px;}
+.heart{
+    font-size:60px;
+    animation:beat 1s infinite;
+}
+@keyframes beat{0%,100%{transform:scale(1);}50%{transform:scale(1.25);}}
+
+button{
+    padding:14px 32px;
+    margin:15px 10px 5px;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+#yes{
+    background:linear-gradient(45deg,#ff5f7e,#ff8fa3);
+    color:white;
+    box-shadow:0 5px 15px rgba(255,95,126,0.5);
+}
+#yes:hover{transform:scale(1.05);}
+#no{
+    background:#eee;
+    color:#333;
+    position:relative;
+}
+#message{
+    font-size:20px;
+    color:#ff5f7e;
+    margin-top:20px;
+    display:none;
+    animation:fadeIn 1s forwards;
+}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+.floating-heart{
+    position:absolute;
+    bottom:-20px;
+    font-size:24px;
+    animation:rise 6s linear infinite;
+    opacity:0.7;
+}
+@keyframes rise{
+    from{transform:translateY(0) scale(1);opacity:1;}
+    to{transform:translateY(-800px) scale(1.5);opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="heart">❤️</div>
+    <h1>Atharv (Aaduuuu) 💕</h1>
+    <p>You make my world brighter, my heart calmer,
+and my smile uncontrollable.
+Every moment with you feels like magic ✨</p>
+    <h2>Will you be my Valentine? 💌</h2>
+    <button id="yes">YES 💖</button>
+    <button id="no">NO 🙈</button>
+    <div id="message">Yayyyy!! 🥰💞<br>
+    I promise to love you more every day,
+    tease you forever,
+    and choose you in every lifetime. 💘<br>
+    Happy Valentine’s Day, my Aaduuuu ❤️</div>
+</div>
+
+<script>
+const yesBtn=document.getElementById('yes');
+const noBtn=document.getElementById('no');
+const msg=document.getElementById('message');
+const noMessages=[
+  "Hehe 😝 you can’t deny this question, Aaduuuu 💖",
+  "No option not available 😌 only YES is valid 💕",
+  "Nice try… but my heart already chose you 🥺❤️",
+  "Oops! You can’t escape being my Valentine 😏💘",
+  "Sorry sir, this question has only one answer — YES 😎💗"
+];
+let noCount=0;
+
+noBtn.addEventListener('mouseover',()=>{
+    const x=Math.random()*300;
+    const y=Math.random()*200;
+    noBtn.style.transform=`translate(${x}px,${y}px)`;
+});
+
+noBtn.addEventListener('click',()=>{
+    const temp=document.createElement('div');
+    temp.style.color='#ff4b6e';
+    temp.style.marginTop='10px';
+    temp.style.fontSize='16px';
+    temp.innerText=noMessages[noCount%noMessages.length];
+    document.querySelector('.card').appendChild(temp);
+    setTimeout(()=>{temp.remove();},2000);
+    noCount++;
+});
+
+yesBtn.addEventListener('click',()=>{
+    msg.style.display='block';
+});
+
+// floating hearts
+setInterval(()=>{
+    const heart=document.createElement('div');
+    heart.classList.add('floating-heart');
+    heart.innerText='💖';
+    heart.style.left=Math.random()*100+'%';
+    heart.style.fontSize=(20+Math.random()*20)+'px';
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},6000);
+},500);
+</script>
+
+</body>
+</html>
